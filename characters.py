@@ -40,7 +40,7 @@ class Enemy(pygame.sprite.Sprite):
     def update(self):
         if self.rect.left < 0 or self.rect.right > self.SCREEN_WIDTH:
             self.movement *= -1
-        self.rect.move_ip(5 * self.movement, 0)
+        self.rect.move_ip(2 * self.movement, 0)
 
 
 class Bullet(pygame.sprite.Sprite):
@@ -57,4 +57,19 @@ class Bullet(pygame.sprite.Sprite):
         self.rect.move_ip(0, -5)
 
         if self.rect.bottom < 0:
+            self.kill()
+
+class PlayerBullet(Bullet):
+    def __init__(self, SCREEN_HEIGHT: int, playerMid: tuple[int, int]) -> None:
+        super(PlayerBullet, self).__init__(SCREEN_HEIGHT, playerMid)
+
+class EnemyBullet(Bullet):
+    def __init__(self, SCREEN_HEIGHT: int, enemyMid: tuple[int, int]) -> None:
+        super(EnemyBullet, self).__init__(SCREEN_HEIGHT, enemyMid)
+        self.surf.fill("PURPLE")
+        
+    def update(self) -> None:
+        self.rect.move_ip(0, 5)
+        
+        if self.rect.top > self.SCREEN_HEIGHT:
             self.kill()
