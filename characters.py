@@ -34,6 +34,13 @@ class Enemy(pygame.sprite.Sprite):
         self.rect = self.surf.get_rect(
             center = (random.randint(20, SCREEN_WIDTH-20), random.randint(10, 100))
         )
+        self.SCREEN_WIDTH = SCREEN_WIDTH
+        self.movement = random.choice([1, -1, -2, 2])
+
+    def update(self):
+        if self.rect.left < 0 or self.rect.right > self.SCREEN_WIDTH:
+            self.movement *= -1
+        self.rect.move_ip(5 * self.movement, 0)
 
 
 class Bullet(pygame.sprite.Sprite):
