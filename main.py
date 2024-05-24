@@ -6,12 +6,12 @@ from pygame.locals import (
     QUIT,
     K_ESCAPE,
     KEYDOWN,
-    K_SPACE
+    K_SPACE,
+    K_p
 )
-import pygame.sprite
-
 
 from characters import Player, Enemy, PlayerBullet, EnemyBullet
+from behaviors import pause
 
 def main():
     pygame.init()
@@ -49,6 +49,8 @@ def main():
                     bullet = PlayerBullet(SCREEN_HEIGH, player.rect.midbottom)
                     bullets.add(bullet)
                     all_sprites.add(bullet)
+                if event.key == K_p:
+                    running = pause(running)
             if event.type == SPAWN_ENEMY:
                 enemy = Enemy(SCREEN_WIDTH)
                 enemies.add(enemy)
@@ -76,7 +78,6 @@ def main():
 
         if pygame.sprite.spritecollideany(player, enemiesBullets):
             running = False
-            print("got hit")
             player.kill()
             
         pygame.display.flip()
