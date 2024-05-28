@@ -38,6 +38,7 @@ def main():
     all_sprites.add(player)
 
     running = True
+    Score: int = 0
     while running:
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -74,7 +75,9 @@ def main():
         for sprite in all_sprites:
             screen.blit(sprite.surf, sprite.rect)
 
-        pygame.sprite.groupcollide(bullets, enemies, True, True)
+        collisions = pygame.sprite.groupcollide(bullets, enemies, True, True)
+        for collision in collisions:
+            Score += 1
 
         if pygame.sprite.spritecollideany(player, enemiesBullets):
             running = False
@@ -84,6 +87,7 @@ def main():
 
         clock.tick(60)
         
+    print(f"Score: {Score}")
     pygame.quit()
     
     
