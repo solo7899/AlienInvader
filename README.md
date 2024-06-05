@@ -1,6 +1,6 @@
-### NOT VERY CLEAN CODED _ALIEN INVADER_ CLONE
-
-_ ## KEY_BIND GUIDE
-    _ left (<-) and right(->) key to move
-    _ Space to shoot
-    _ pause/resume with p
+### NOT VERY CLEAN CODED _ALIEN INVADER_ CLONE  
+  
+* ## KEY_BIND GUIDE  
+     * left (<-) and right(->) key to move  
+     * Space to shoot  
+     * pause/resume with p  
